@@ -4,84 +4,39 @@ import { StyleSheet, Text, View, TouchableHighlight, TouchableOpacity, Button } 
 export default class App extends React.Component {
 
   render() {
+      const numberBtn = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "=",];
     return (
       <View style={styles.container}>
           <View style={styles.NumberText}>
             <Text>asdjfj</Text>
           </View>
           <View style={styles.NumberFunc}>
-              <View style={styles.ViewButtons}>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>7</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>8</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>9</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
+              <View style={styles.NumberBtn}>
+                  {
+                      numberBtn.map((btn, index) => {
+                          if(btn.length < 3){
+                              return <View key={index} style={styles.ViewButtons}>
+                                  <TouchableHighlight>
+                                      <Text style={styles.btnNumber}>{btn}</Text>
+                                  </TouchableHighlight>
+                              </View>
+                          }
+                      })
+                  }
+              </View>
+              <View style={styles.ViewButtonsFunc}>
+                  <TouchableHighlight>
                       <Text style={styles.btnFunc}>+</Text>
                   </TouchableHighlight>
-
-              </View>
-              <View style={styles.ViewButtons}>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>4</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>5</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>6</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
+                  <TouchableHighlight>
                       <Text style={styles.btnFunc}>-</Text>
+                  </TouchableHighlight><TouchableHighlight>
+                  <Text style={styles.btnFunc}>*</Text>
                   </TouchableHighlight>
-              </View>
-              <View style={styles.ViewButtons}>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>1</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>2</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>3</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnFunc}>*</Text>
-                  </TouchableHighlight>
-              </View>
-              <View style={styles.ViewButtons}>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>.</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>0</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnNumber}>%</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
+                  <TouchableHighlight>
                       <Text style={styles.btnFunc}>/</Text>
                   </TouchableHighlight>
               </View>
-              <View style={styles.ViewButtons}>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnFunc}>&lit;</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnFunc}>EC</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnFunc}>M-</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.button}>
-                      <Text style={styles.btnFunc}>=</Text>
-                  </TouchableHighlight>
-              </View>
-
           </View>
       </View>
     );
@@ -101,6 +56,7 @@ const styles = StyleSheet.create({
     },
     btnNumber: {
       textAlign: 'center',
+        margin: 1,
         width: 85,
         height: 90,
         fontSize: 25,
@@ -110,6 +66,7 @@ const styles = StyleSheet.create({
     },
     btnFunc: {
         textAlign: 'center',
+        margin: 1,
         width: 85,
         height: 90,
         fontSize: 25,
@@ -123,10 +80,16 @@ const styles = StyleSheet.create({
     },
     NumberFunc: {
         flex: 4,
-        flexDirection: 'column',
-        justifyContent: 'flex-end'
-    },
-    ViewButtons: {
         flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'flex-end'
+    },
+    NumberBtn: {
+      width: 270, flexDirection: 'row',
+        flexWrap: 'wrap'
+
+    },
+    ViewButtonsFunc: {
+
     },
 });
