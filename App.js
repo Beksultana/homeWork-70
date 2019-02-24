@@ -3,39 +3,90 @@ import { StyleSheet, Text, View, TouchableHighlight, TouchableOpacity, Button } 
 
 export default class App extends React.Component {
 
+    state = {
+        counter: ''
+    };
+
+    onPressHandler = value => {
+        this.setState({
+            counter: this.state.counter + value
+        })
+    };
+
+    onPressRemoveOne = () => {
+        const removedCounterOne = this.state.counter.substr(0, this.state.counter.length - 1);
+        this.setState({
+            counter: removedCounterOne
+        })
+    };
+
+    equallyHandler = () => {
+        const result = eval(this.state.counter);
+        this.setState({
+            counter: result
+        })
+    };
+
+    onPressRemoveCE = () => {
+        this.setState({
+            counter: ''
+        })
+    };
   render() {
-      const numberBtn = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "=",];
+      const numberBtn1 = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "<", "0", "=", ".", "%", "00"];
+      const numberBtn2 = ["+", "-", "*", "/", "CE"];
     return (
       <View style={styles.container}>
           <View style={styles.NumberText}>
-            <Text>asdjfj</Text>
+            <Text style={{fontSize: 25, textAlign: 'center', marginBottom: 20}}>{this.state.counter}</Text>
           </View>
           <View style={styles.NumberFunc}>
               <View style={styles.NumberBtn}>
                   {
-                      numberBtn.map((btn, index) => {
-                          if(btn.length < 3){
-                              return <View key={index} style={styles.ViewButtons}>
+                      numberBtn1.map((btn, index) => {
+
+                          if (btn === "<"){
+                              return <View key={index}>
                                   <TouchableHighlight>
-                                      <Text style={styles.btnNumber}>{btn}</Text>
+                                      <Text onPress={this.onPressRemoveOne} style={styles.btnNumber}>{btn}</Text>
                                   </TouchableHighlight>
                               </View>
                           }
+                          if (btn === "="){
+                              return <View key={index}>
+                                  <TouchableHighlight>
+                                      <Text onPress={this.equallyHandler} style={styles.btnNumber}>{btn}</Text>
+                                  </TouchableHighlight>
+                              </View>
+                          }
+                          return <View key={index} >
+                                  <TouchableHighlight>
+                                      <Text onPress={() => this.onPressHandler(btn)} style={styles.btnNumber}>{btn}</Text>
+                                  </TouchableHighlight>
+                              </View>
                       })
                   }
               </View>
-              <View style={styles.ViewButtonsFunc}>
-                  <TouchableHighlight>
-                      <Text style={styles.btnFunc}>+</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight>
-                      <Text style={styles.btnFunc}>-</Text>
-                  </TouchableHighlight><TouchableHighlight>
-                  <Text style={styles.btnFunc}>*</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight>
-                      <Text style={styles.btnFunc}>/</Text>
-                  </TouchableHighlight>
+              <View>
+                  {
+                      numberBtn2.map((btn, index) => {
+                          if (btn === "CE"){
+                              return <View key={index}>
+                                  <TouchableHighlight>
+                                      <Text onPress={this.onPressRemoveCE}
+                                            style={{paddingTop: 30, color: '#fff', width: 85, height: 100,
+                                                backgroundColor: "#BD1722", margin: 1, textAlign: 'center', fontSize: 25}}
+                                      >{btn}</Text>
+                                  </TouchableHighlight>
+                              </View>
+                          }
+                          return <View key={index} style={styles.ViewButtonsFunc}>
+                              <TouchableHighlight>
+                                  <Text onPress={() => this.onPressHandler(btn)} style={styles.btnFunc}>{btn}</Text>
+                              </TouchableHighlight>
+                          </View>
+                      })
+                  }
               </View>
           </View>
       </View>
@@ -58,17 +109,17 @@ const styles = StyleSheet.create({
       textAlign: 'center',
         margin: 1,
         width: 85,
-        height: 90,
+        height: 100,
         fontSize: 25,
         paddingTop: 30,
         borderWidth: 0.5,
-        borderColor: '#d6d7da',
+        borderColor: '#aaa',
     },
     btnFunc: {
         textAlign: 'center',
         margin: 1,
         width: 85,
-        height: 90,
+        height: 100,
         fontSize: 25,
         color: '#fff',
         paddingTop: 30,
@@ -76,7 +127,7 @@ const styles = StyleSheet.create({
     },
     NumberText: {
       flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     NumberFunc: {
         flex: 4,
@@ -86,7 +137,8 @@ const styles = StyleSheet.create({
     },
     NumberBtn: {
       width: 270, flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        paddingLeft: 5
 
     },
     ViewButtonsFunc: {
