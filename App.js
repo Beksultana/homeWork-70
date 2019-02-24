@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         paddingTop: 30,
         borderWidth: 0.5,
-        borderColor: '#aaa',
+        borderColor: '#ccc',
+        borderRadius: 5
     },
     btnFunc: {
         textAlign: 'center',
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         paddingTop: 30,
         backgroundColor: '#009364',
+        borderRadius: 5
     },
     NumberText: {
       flex: 1,
