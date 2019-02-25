@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, TouchableHighlight, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {addNumber, equally, removeEC, removeOne} from "../../../store/actions/action-number";
 
@@ -20,22 +20,22 @@ class Counter extends React.Component {
 
                                 if (btn === "<"){
                                     return <View key={index}>
-                                        <TouchableHighlight>
+                                        <TouchableOpacity>
                                             <Text onPress={() => this.props.onPressRemoveOne(btn)} style={styles.btnNumber}>{btn}</Text>
-                                        </TouchableHighlight>
+                                        </TouchableOpacity>
                                     </View>
                                 }
                                 if (btn === "="){
                                     return <View key={index}>
-                                        <TouchableHighlight>
+                                        <TouchableOpacity >
                                             <Text onPress={() => this.props.equally(btn)} style={styles.btnNumber}>{btn}</Text>
-                                        </TouchableHighlight>
+                                        </TouchableOpacity>
                                     </View>
                                 }
                                 return <View key={index} >
-                                    <TouchableHighlight>
+                                    <TouchableOpacity activeOpacity={0.3}>
                                         <Text onPress={() => this.props.onPressHandlerAddNumber(btn)} style={styles.btnNumber}>{btn}</Text>
-                                    </TouchableHighlight>
+                                    </TouchableOpacity>
                                 </View>
                             })
                         }
@@ -45,18 +45,18 @@ class Counter extends React.Component {
                             numberBtn2.map((btn, index) => {
                                 if (btn === "CE"){
                                     return <View key={index}>
-                                        <TouchableHighlight>
+                                        <TouchableOpacity>
                                             <Text onPress={this.props.onPressRemoveCE}
                                                   style={{paddingTop: 30, color: '#fff', width: 85, height: 100,
                                                       backgroundColor: "#BD1722", margin: 1, textAlign: 'center', fontSize: 25}}
                                             >{btn}</Text>
-                                        </TouchableHighlight>
+                                        </TouchableOpacity>
                                     </View>
                                 }
                                 return <View key={index}>
-                                    <TouchableHighlight>
+                                    <TouchableOpacity>
                                         <Text onPress={() => this.props.onPressHandlerAddNumber(btn)} style={styles.btnFunc}>{btn}</Text>
-                                    </TouchableHighlight>
+                                    </TouchableOpacity>
                                 </View>
                             })
                         }
