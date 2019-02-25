@@ -6,12 +6,13 @@ import {addNumber, equally, removeEC, removeOne} from "../../../store/actions/ac
 class Counter extends React.Component {
 
     render() {
-        const numberBtn1 = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "<", "0", "=", ".", "%", "00"];
+        const numberBtn1 = [".", "%", "00","7", "8", "9", "4", "5", "6", "1", "2", "3", "<", "0", "=",];
         const numberBtn2 = ["+", "-", "*", "/", "CE"];
         return (
             <View style={styles.container}>
                 <View style={styles.NumberText}>
-                    <Text style={{fontSize: 25, textAlign: 'center', marginBottom: 20}}>{this.props.counter}</Text>
+                    <Text style={{fontSize: 35, textAlign: 'right', marginBottom: 20,
+                        marginTop: 20, color: '#fff'}}>{this.props.counter}</Text>
                 </View>
                 <View style={styles.NumberFunc}>
                     <View style={styles.NumberBtn}>
@@ -20,20 +21,26 @@ class Counter extends React.Component {
 
                                 if (btn === "<"){
                                     return <View key={index}>
-                                        <TouchableOpacity>
-                                            <Text onPress={() => this.props.onPressRemoveOne(btn)} style={styles.btnNumber}>{btn}</Text>
+                                        <TouchableOpacity >
+                                            <Text onPress={() => this.props.onPressRemoveOne(btn)}
+                                                  style={{paddingTop: 30, color: '#E95C29', width: 90, height: 90,
+                                                      backgroundColor: "#0F100F", textAlign: 'center', fontSize: 25}}
+                                            >{btn}</Text>
                                         </TouchableOpacity>
                                     </View>
                                 }
                                 if (btn === "="){
                                     return <View key={index}>
                                         <TouchableOpacity >
-                                            <Text onPress={() => this.props.equally(btn)} style={styles.btnNumber}>{btn}</Text>
+                                            <Text onPress={() => this.props.equally(btn)}
+                                                  style={{paddingTop: 30, color: '#E95C29', width: 90, height: 90,
+                                                      backgroundColor: "#0F100F", textAlign: 'center', fontSize: 25}}
+                                            >{btn}</Text>
                                         </TouchableOpacity>
                                     </View>
                                 }
                                 return <View key={index} >
-                                    <TouchableOpacity activeOpacity={0.3}>
+                                    <TouchableOpacity style={{activeOpacity: 0.5}}>
                                         <Text onPress={() => this.props.onPressHandlerAddNumber(btn)} style={styles.btnNumber}>{btn}</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -47,13 +54,13 @@ class Counter extends React.Component {
                                     return <View key={index}>
                                         <TouchableOpacity>
                                             <Text onPress={this.props.onPressRemoveCE}
-                                                  style={{paddingTop: 30, color: '#fff', width: 85, height: 100,
-                                                      backgroundColor: "#BD1722", margin: 1, textAlign: 'center', fontSize: 25}}
+                                                  style={{paddingTop: 30, color: '#E95C29', width: 90, height: 90,
+                                                      backgroundColor: "#1E201E", textAlign: 'center', fontSize: 25}}
                                             >{btn}</Text>
                                         </TouchableOpacity>
                                     </View>
                                 }
-                                return <View key={index}>
+                                return <View style={{backgroundColor: "#1E201E"}} key={index}>
                                     <TouchableOpacity>
                                         <Text onPress={() => this.props.onPressHandlerAddNumber(btn)} style={styles.btnFunc}>{btn}</Text>
                                     </TouchableOpacity>
@@ -70,52 +77,50 @@ class Counter extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#E95C29',
         alignItems: 'center',
         justifyContent: 'center',
     },
     button: {
         alignItems: 'center',
-        margin: 1,
+        color: '#b1c3b1',
     },
     btnNumber: {
         textAlign: 'center',
-        margin: 1,
-        width: 85,
-        height: 100,
+        width: 90,
+        height: 90,
         fontSize: 25,
         paddingTop: 30,
         borderWidth: 0.5,
-        borderColor: '#ccc',
-        borderRadius: 5
+        borderColor: '#000',
+        color: '#b1c3b1',
+        backgroundColor: '#0F100F'
     },
     btnFunc: {
         textAlign: 'center',
-        margin: 1,
-        width: 85,
-        height: 100,
+        width: 90,
+        height: 90,
         fontSize: 25,
-        color: '#fff',
+        color: '#E95C29',
         paddingTop: 30,
-        backgroundColor: '#009364',
-        borderRadius: 5
+        borderWidth: 0.5,
+        borderColor: '#000',
     },
     NumberText: {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     NumberFunc: {
-        flex: 4,
+        flex: 2.3,
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'flex-end',
-        paddingBottom: 5,
+        backgroundColor: '#0D0B0B'
 
     },
     NumberBtn: {
         width: 270, flexDirection: 'row',
         flexWrap: 'wrap',
-        paddingLeft: 2,
     },
 });
 
