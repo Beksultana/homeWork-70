@@ -1,7 +1,7 @@
 import {ADD_NUMBER, DELETE_CE, DELETE_ONE, EQUALLY} from "../actions/action-number";
 
 const initialState = {
-    counter: ''
+    counter: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,19 +16,28 @@ const reducer = (state = initialState, action) => {
             const removedCounter = String(state.counter).substr(0, state.counter.length - 1);
             return {
                 ...state,
+                error: null,
                 counter: removedCounter
             };
         case DELETE_CE:
             return {
                 ...state,
+                error: null,
                 counter: ''
             };
         case EQUALLY:
-            const result = eval(state.counter);
-            return {
-                ...state,
-                counter: result
-            };
+            try {
+                const result = eval(state.counter);
+                return {
+                    ...state,
+                    counter: result
+                };
+            }catch (e) {
+                return {
+                    ...state,
+                    error: 'Error'
+                }
+            }
         default:
             return state;
     }

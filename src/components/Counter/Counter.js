@@ -1,7 +1,8 @@
 import React from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {addNumber, equally, removeEC, removeOne} from "../../../store/actions/action-number";
+import {styles} from "./CounterCss"
 
 class Counter extends React.Component {
 
@@ -11,6 +12,7 @@ class Counter extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.NumberText}>
+                    <Text style={{color: 'black', fontSize: 40, fontWeight: 'bold'}}>{this.props.error}</Text>
                     <Text style={{fontSize: 35, textAlign: 'right', marginBottom: 20,
                         marginTop: 20, color: '#fff'}}>{this.props.counter}</Text>
                 </View>
@@ -74,59 +76,10 @@ class Counter extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#E95C29',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    button: {
-        alignItems: 'center',
-        color: '#b1c3b1',
-    },
-    btnNumber: {
-        textAlign: 'center',
-        width: 90,
-        height: 90,
-        fontSize: 25,
-        paddingTop: 30,
-        borderWidth: 0.5,
-        borderColor: '#000',
-        color: '#b1c3b1',
-        backgroundColor: '#0F100F'
-    },
-    btnFunc: {
-        textAlign: 'center',
-        width: 90,
-        height: 90,
-        fontSize: 25,
-        color: '#E95C29',
-        paddingTop: 30,
-        borderWidth: 0.5,
-        borderColor: '#000',
-    },
-    NumberText: {
-        flex: 1,
-        justifyContent: 'flex-end'
-    },
-    NumberFunc: {
-        flex: 2.3,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-end',
-        backgroundColor: '#0D0B0B'
-
-    },
-    NumberBtn: {
-        width: 270, flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-});
-
 const mapStateToProps = state => {
   return {
-      counter: state.counter
+      counter: state.counter,
+      error: state.error,
   }
 };
 const mapDispatchProps = dispatch => {
@@ -135,7 +88,6 @@ const mapDispatchProps = dispatch => {
         onPressRemoveOne: () => dispatch(removeOne()),
         onPressRemoveCE: () => dispatch(removeEC()),
         equally: () => dispatch(equally()),
-
     }
 };
 
